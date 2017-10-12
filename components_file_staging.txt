@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 {"staging": {"Assessments": 23, "Tournaments": 6, "Simple Flow": 1}}
+=======
+{"staging": {"Assessments": 23, "Tournaments": 6}}
+>>>>>>> master
