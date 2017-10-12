@@ -4,8 +4,8 @@ from jira.client import JIRA
 import json
 
 def main():
-    jira_options = {'server': 'https://securecodewarrior.atlassian.net'}
-    jira = JIRA(options=jira_options,basic_auth=('mak+atlassian@qxf2.com','JIRATestQxf2'))
+    jira_options = {'server': 'website_address'}
+    jira = JIRA(options=jira_options,basic_auth=('email','password'))
     print 'I have logged in'
     #create_issues(jira)
     number_of_issues_filter(jira)
