@@ -1,2 +1,1 @@
-[Production,Staging]
-[46,87]
+{'Production':46,'Staging':87}
