@@ -1,5 +1,1 @@
-<<<<<<< HEAD
 {"Production": {"Assessments": 4, "Tournament": 1, "Simple Flow": 1}}
-=======
-{"Production": {"Assessments": 4, "Tournament": 1}}
->>>>>>> master

@@ -13,12 +13,12 @@ import json
 
 def main():
     #Using basic_auth log in to the jira account
-    jira_options = {'server': 'webaddress'}
-    jira = JIRA(options=jira_options,basic_auth=('username','password'))
-    create_issues(jira)
+    jira_options = {'server': 'https://securecodewarrior.atlassian.net'}
+    jira = JIRA(options=jira_options,basic_auth=('mak+atlassian@qxf2.com','JIRATestQxf2'))
+    #create_issues(jira)
     number_of_issues_filter(jira)
 	
-def create_issues(jira):
+"""def create_issues(jira):
     "To create different issues"
     #Getting the number of projects in the JIRA
     projects = jira.projects()
@@ -65,13 +65,13 @@ def create_issues(jira):
     'priority':{'name':'HIGH'},
     'components':[{'Component name':'TOURNAMENT'}],
     'labels':['STAGING']}]
-    issues = jira.create_issues(field_list=issue_list)
+    issues = jira.create_issues(field_list=issue_list)"""
 
     	
 def number_of_issues_filter(jira):
     "To find the number issues on Staging vs Production"
     #This is for client
-    """#This method gives the number of issues filed on staging    
+    #This method gives the number of issues filed on staging    
     resultList_staging = jira.search_issues("'project'='PORTAL' AND 'environment' ~ 'Staging'  AND 'createdDate' > '2017/05/29' AND type = bug",startAt=0, maxResults=100, validate_query=True, fields=None, expand=None, json_result=None)
     Issues_on_staging = len(resultList_staging)
     print Issues_on_staging
@@ -93,57 +93,10 @@ def number_of_issues_filter(jira):
     file1 = open("file1.txt","w")
     empty_dict["Production"]= Issue_in_Production    
     json.dump(empty_dict, open("file1.txt",'w'))  
-    file1.close()"""
+    file1.close()
 
-    #This method provide the number of bugs filed on assessment component against staging
-    component_assessment_staging = jira.search_issues("'project' = 'PORTAL' AND 'environment' ~ 'Staging'  AND 'createdDate' > '2017/05/29'  and 'type' = bug and 'component' = 'Assessment'",startAt=0, maxResults=300, validate_query=True, fields=None, expand=None, json_result=None)
-    assessment_issue_on_staging = len(component_assessment_staging)
-    print assessment_issue_on_staging
-    staging_components_dictionary = {}
-    staging_dictionary={}
-    file1_components = open("compnents_file_staging.txt","w")
-    staging_components_dictionary['Assessments']= assessment_issue_on_staging
-    staging_dictionary['staging']= staging_components_dictionary
-    print staging_dictionary
-    json.dump(staging_dictionary, open("components_file_staging.txt",'w'))
-    file1_components.close()
-
-    #This method provide the number of bugs filed on tournament component against staging
-    component_tournament_staging = jira.search_issues("'project' = 'PORTAL' AND 'environment' ~ 'Staging'  AND 'createdDate' > '2017/05/29'  and 'type' = bug and 'component' = 'Tournament'",startAt=0, maxResults=300, validate_query=True, fields=None, expand=None, json_result=None)
-    tournament_issue_on_staging = len(component_tournament_staging)
-    print tournament_issue_on_staging
-    file1_components = open("compnents_file_staging.txt","w")
-    staging_components_dictionary['Tournaments']= tournament_issue_on_staging
-    staging_dictionary['staging']= staging_components_dictionary
-    print staging_dictionary
-    json.dump(staging_dictionary, open("components_file_staging.txt",'w'))
-    file1_components.close()
-
-    #This method provide the number of bugs filed on assessment component against production
-    component_assessment_production = jira.search_issues("'project' = 'PORTAL' AND environment is not EMPTY and environment !~ staging  AND 'createdDate' > '2017/05/29'  and 'type' = bug and 'component' = 'Assessment'",startAt=0, maxResults=300, validate_query=True, fields=None, expand=None, json_result=None)
-    assessment_issue_on_production = len(component_assessment_production)
-    print assessment_issue_on_production
-    production_components_dictionary = {}
-    production_dictionary={}
-    file1_components = open("compnents_file_production.txt","w")
-    production_components_dictionary['Assessments']= assessment_issue_on_production
-    production_dictionary['Production']= staging_components_dictionary
-    json.dump(production_dictionary, open("components_file_production.txt",'w'))
-    file1_components.close()
-    
-    #This method provide the number of bugs filed on tournament component against production
-    component_tournament_production = jira.search_issues("'project' = 'PORTAL' AND environment is not EMPTY and environment !~ staging  AND 'createdDate' > '2017/05/29'  and 'type' = bug and 'component' = 'Tournament'",startAt=0, maxResults=300, validate_query=True, fields=None, expand=None, json_result=None)
-    tournament_issue_on_production = len(component_tournament_production)
-    print tournament_issue_on_production    
-    file1_components = open("compnents_file_production.txt","w")
-    production_components_dictionary['Tournament']= tournament_issue_on_production
-    production_dictionary['Production']= production_components_dictionary
-    json.dump(production_dictionary, open("components_file_production.txt",'w'))
-    file1_components.close()   
-    
-
-    
-    """#Finding the number of issues on staging
+        
+    #Finding the number of issues on staging
     
     #This method gives the number of issues filed on staging    
     resultList_staging = jira.search_issues("'project'='PORTAL' AND 'environment' ~ 'Staging'  AND 'createdDate' > '2017/05/29' AND type = bug",startAt=0, maxResults=100, validate_query=True, fields=None, expand=None, json_result=None)
